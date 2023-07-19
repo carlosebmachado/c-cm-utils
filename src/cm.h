@@ -5,5 +5,6 @@
 #include "cm_element.h"
 #include "cm_vector.h"
 #include "cm_stack.h"
+#include "cm_map.h"
 
 #endif // CM_H

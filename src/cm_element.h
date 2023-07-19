@@ -4,7 +4,7 @@
 #include "cm_any.h"
 
 
-typedef struct {
+typedef struct cm_element {
     cm_any value;
     struct cm_element* next;
     struct cm_element* prev;
