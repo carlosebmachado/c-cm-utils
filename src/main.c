@@ -28,14 +28,15 @@ void cm_any_print(cm_any any) {
     }
 }
 
-void cm_vector_print(cm_vector* v) {
+void vector_print(cm_vector* v) {
     for(int i = 0; i < cm_vector_size(v); ++i) {
         cm_any_print(cm_vector_at(v, i));
     }
 }
 
-void cm_stack_print(cm_stack* s) {
-    for(int i = 0; i < cm_stack_size(s); ++i) {
+void stack_print(cm_stack* s) {
+    int size = cm_stack_size(s);
+    for(int i = 0; i < size; ++i) {
         cm_any_print(cm_stack_pop(s));
     }
 }
@@ -47,7 +48,7 @@ int main() {
     cm_vector_push_back(v, cm_any_string("foo"));
 
     printf("Full vector:\n");
-    cm_vector_print(v);
+    vector_print(v);
     printf("\n");
 
     printf("Print out of bound:\n");
@@ -61,11 +62,11 @@ int main() {
     cm_stack_push(s, cm_any_string("foo"));
 
     printf("Full stack:\n");
-    cm_stack_print(v);
+    stack_print(v);
     printf("\n");
 
     printf("Stack after print:\n");
-    cm_stack_print(v);
+    stack_print(v);
 
     return 0;
 }
