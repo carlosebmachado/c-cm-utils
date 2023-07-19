@@ -41,6 +41,11 @@ void stack_print(cm_stack* s) {
     }
 }
 
+void map_print(const char* key, cm_any value) {
+    printf("key: %s / ", key);
+    cm_any_print(value);
+}
+
 int main() {
     cm_vector* v = cm_vector_init();
     cm_vector_push_back(v, cm_any_int(10));
@@ -67,6 +72,22 @@ int main() {
 
     printf("Stack after print:\n");
     stack_print(v);
+
+    printf("\n-----------------\n\n");
+
+    cm_map* m = cm_map_init();
+    cm_map_insert(m, "item-10", cm_any_int(10));
+    cm_map_insert(m, "item-9", cm_any_int(9));
+    cm_map_insert(m, "item-foo", cm_any_string("foo"));
+
+    printf("Map key print:\n");
+    cm_any_print(cm_map_get(m, "item-10"));
+    cm_any_print(cm_map_get(m, "item-9"));
+    cm_any_print(cm_map_get(m, "item-foo"));
+    printf("\n");
+
+    printf("Map foreach print:\n");
+    cm_map_foreach(m, map_print);
 
     return 0;
 }

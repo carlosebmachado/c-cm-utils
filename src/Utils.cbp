@@ -34,8 +34,9 @@
 		<Unit filename="cm.h" />
 		<Unit filename="cm_any.h" />
 		<Unit filename="cm_element.h" />
-		<Unit filename="cm_vector.h" />
+		<Unit filename="cm_map.h" />
 		<Unit filename="cm_stack.h" />
+		<Unit filename="cm_vector.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
