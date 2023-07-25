@@ -28,55 +28,63 @@ typedef struct {
     void* data;
 } cm_any;
 
-cm_any cm_any_bool(bool value) {
-    cm_any a;
-    a.type = CM_TYPE_BOOL;
-    a.data = malloc(sizeof(bool));
-    *(bool*)a.data = value;
-    return a;
+cm_any* cm_any_custom(void* value, int type) {
+    cm_any* any;
+    any->type = CM_TYPE_STRING + type;
+    any->data = malloc(sizeof(void*));
+    *((void*)*)any->data = value;
+    return any;
 }
 
-cm_any cm_any_int(long long int value) {
-    cm_any a;
-    a.type = CM_TYPE_INT;
-    a.data = malloc(sizeof(long long int));
-    *(long long int*)a.data = value;
-    return a;
+cm_any* cm_any_bool(bool value) {
+    cm_any* any;
+    any->type = CM_TYPE_BOOL;
+    any->data = malloc(sizeof(bool));
+    *(bool*)any->data = value;
+    return any;
 }
 
-cm_any cm_any_err() {
-    cm_any a;
-    a.type = CM_TYPE_ERROR;
-    a.data = malloc(sizeof(int));
-    *(int*)a.data = -1;
-    return a;
+cm_any* cm_any_int(long long int value) {
+    cm_any* any;
+    any->type = CM_TYPE_INT;
+    any->data = malloc(sizeof(long long int));
+    *(long long int*)any->data = value;
+    return any;
 }
 
-cm_any cm_any_float(long double value) {
-    cm_any a;
-    a.type = CM_TYPE_FLOAT;
-    a.data = malloc(sizeof(long double));
-    *(long double*)a.data = value;
-    return a;
+cm_any* cm_any_err() {
+    cm_any* any;
+    any->type = CM_TYPE_ERROR;
+    any->data = NULL;
+    return any;
 }
 
-cm_any cm_any_char(char value) {
-    cm_any a;
-    a.type = CM_TYPE_CHAR;
-    a.data = malloc(sizeof(char));
-    *(char*)a.data = value;
-    return a;
+cm_any* cm_any_float(long double value) {
+    cm_any* any;
+    any->type = CM_TYPE_FLOAT;
+    any->data = malloc(sizeof(long double));
+    *(long double*)any->data = value;
+    return any;
 }
 
-cm_any cm_any_string(const char* value) {
-    cm_any a;
-    a.type = CM_TYPE_STRING;
-    a.data = strdup(value);
-    return a;
+cm_any* cm_any_char(char value) {
+    cm_any* any;
+    any->type = CM_TYPE_CHAR;
+    any->data = malloc(sizeof(char));
+    *(char*)any->data = value;
+    return any;
 }
 
-void cm_any_free(cm_any a) {
-    free(a.data);
+cm_any* cm_any_string(const char* value) {
+    cm_any* any;
+    any->type = CM_TYPE_STRING;
+    any->data = strdup(value);
+    return any;
+}
+
+void cm_any_free(cm_any* any) {
+    free(any->data);
+    free(any);
 }
 
 #endif //CM_ANY_H

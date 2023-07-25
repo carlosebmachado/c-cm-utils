@@ -3,25 +3,25 @@
 
 #include "cm.h"
 
-void cm_any_print(cm_any any) {
-    switch (any.type) {
+void any_print(cm_any* any) {
+    switch (any->type) {
         case CM_TYPE_ERROR:
-            printf("Error value: %d\n", *(int*)any.data);
+            printf("Error value\n");
             break;
         case CM_TYPE_BOOL:
-            printf("Bool value: %s\n", *(bool*)any.data ? "true" : "false");
+            printf("Bool value: %s\n", *(bool*)any->data ? "true" : "false");
             break;
         case CM_TYPE_INT:
-            printf("Integer value: %lld\n", *(long long int*)any.data);
+            printf("Integer value: %lld\n", *(long long int*)any->data);
             break;
         case CM_TYPE_FLOAT:
-            printf("Float value: %Lf\n", (double)(*(long double*)any.data));
+            printf("Float value: %Lf\n", (double)(*(long double*)any->data));
             break;
         case CM_TYPE_CHAR:
-            printf("Char value: %c\n", *(char*)any.data);
+            printf("Char value: %c\n", *(char*)any->data);
             break;
         case CM_TYPE_STRING:
-            printf("String value: %s\n", (char*)any.data);
+            printf("String value: %s\n", (char*)any->data);
             break;
         default:
             printf("Unknown type\n");
@@ -30,20 +30,20 @@ void cm_any_print(cm_any any) {
 
 void vector_print(cm_vector* v) {
     for(int i = 0; i < cm_vector_size(v); ++i) {
-        cm_any_print(cm_vector_at(v, i));
+        any_print(cm_vector_at(v, i));
     }
 }
 
 void stack_print(cm_stack* s) {
     int size = cm_stack_size(s);
     for(int i = 0; i < size; ++i) {
-        cm_any_print(cm_stack_pop(s));
+        any_print(cm_stack_pop(s));
     }
 }
 
-void map_print(const char* key, cm_any value) {
-    printf("key: %s / ", key);
-    cm_any_print(value);
+void map_print(const char* key, cm_any* value) {
+    printf("key: %s and ", key);
+    any_print(value);
 }
 
 int main() {
@@ -57,7 +57,7 @@ int main() {
     printf("\n");
 
     printf("Print out of bound:\n");
-    cm_any_print(cm_vector_at(v, 3));
+    any_print(cm_vector_at(v, 3));
 
     printf("\n-----------------\n\n");
 
@@ -81,9 +81,9 @@ int main() {
     cm_map_insert(m, "item-foo", cm_any_string("foo"));
 
     printf("Map key print:\n");
-    cm_any_print(cm_map_get(m, "item-10"));
-    cm_any_print(cm_map_get(m, "item-9"));
-    cm_any_print(cm_map_get(m, "item-foo"));
+    any_print(cm_map_get(m, "item-10"));
+    any_print(cm_map_get(m, "item-9"));
+    any_print(cm_map_get(m, "item-foo"));
     printf("\n");
 
     printf("Map foreach print:\n");

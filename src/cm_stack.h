@@ -10,63 +10,63 @@ typedef struct {
 } cm_stack;
 
 cm_stack* cm_stack_init() {
-    cm_stack* s = (cm_stack*)malloc(sizeof(cm_stack));
-    s->first = NULL;
-    s->last = NULL;
-    return s;
+    cm_stack* stack = (cm_stack*)malloc(sizeof(cm_stack));
+    stack->first = NULL;
+    stack->last = NULL;
+    return stack;
 }
 
-long long int cm_stack_size(cm_stack* s) {
-    cm_element* current = s->first;
-    long long int sz = 0;
+long long int cm_stack_size(cm_stack* stack) {
+    cm_element* current = stack->first;
+    long long int size = 0;
     while (current) {
-        ++sz;
+        ++size;
         current = current->next;
     }
-    return sz;
+    return size;
 }
 
-void cm_stack_push(cm_stack* s, cm_any val) {
-    if (!s->first) {
-        s->first = cm_element_init(val);
-        s->last = s->first;
+void cm_stack_push(cm_stack* stack, cm_any* value) {
+    if (!stack->first) {
+        stack->first = cm_element_init(value);
+        stack->last = stack->first;
     } else {
-        cm_element* new_element = cm_element_init(val);
-        s->last->next = new_element;
-        new_element->prev = s->last;
-        s->last = new_element;
+        cm_element* new_element = cm_element_init(value);
+        stack->last->next = new_element;
+        new_element->prev = stack->last;
+        stack->last = new_element;
     }
 }
 
-cm_any cm_stack_pop(cm_stack* s) {
-    if (!s->last) {
+cm_any* cm_stack_pop(cm_stack* stack) {
+    if (!stack->last) {
         return cm_any_err();
     }
 
-    cm_element* e = s->last;
-    cm_any val = e->value;
+    cm_element* element = stack->last;
+    cm_any* value = element->value;
 
-    if (s->last == s->first) {
-        s->first = NULL;
-        s->last = NULL;
+    if (stack->last == stack->first) {
+        stack->first = NULL;
+        stack->last = NULL;
     } else {
-        s->last = s->last->prev;
-        s->last->next = NULL;
+        stack->last = stack->last->prev;
+        stack->last->next = NULL;
     }
 
-    free(e);
-    return val;
+    free(element);
+    return value;
 }
 
-cm_any cm_stack_top(cm_stack* s) {
-    if (!s->last) {
-        return cm_any_err();
+cm_any* cm_stack_top(cm_stack* stack) {
+    if (!stack->last) {
+        return NULL;
     }
 
-    cm_element* e = s->last;
-    cm_any val = e->value;
+    cm_element* element = stack->last;
+    cm_any* value = element->value;
 
-    return val;
+    return value;
 }
 
 #endif // CM_STACK_H

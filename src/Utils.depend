@@ -31,3 +31,35 @@
 1689802927 c:\users\carlos\repos\c-utils\src\cm_map.h
 	"cm_element.h"
 
+1690301178 source:c:\users\6922449\repos\c-utils\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	"cm.h"
+
+1690298704 c:\users\6922449\repos\c-utils\src\cm.h
+	"cm_any.h"
+	"cm_element.h"
+	"cm_vector.h"
+	"cm_stack.h"
+	"cm_map.h"
+
+1690299660 c:\users\6922449\repos\c-utils\src\cm_any.h
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<float.h>
+	<string.h>
+	<stdbool.h>
+
+1690299470 c:\users\6922449\repos\c-utils\src\cm_element.h
+	"cm_any.h"
+
+1690300317 c:\users\6922449\repos\c-utils\src\cm_vector.h
+	"cm_element.h"
+
+1690300041 c:\users\6922449\repos\c-utils\src\cm_stack.h
+	"cm_element.h"
+
+1690299626 c:\users\6922449\repos\c-utils\src\cm_map.h
+	"cm_element.h"
+

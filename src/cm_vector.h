@@ -10,51 +10,51 @@ typedef struct {
 } cm_vector;
 
 cm_vector* cm_vector_init() {
-    cm_vector* v = (cm_vector*)malloc(sizeof(cm_vector));
-    v->first = NULL;
-    v->last = NULL;
-    return v;
+    cm_vector* vector = (cm_vector*)malloc(sizeof(cm_vector));
+    vector->first = NULL;
+    vector->last = NULL;
+    return vector;
 }
 
-long long int cm_vector_size(cm_vector* v) {
-    cm_element* current = v->first;
-    long long int sz = 0;
+long long int cm_vector_size(cm_vector* vector) {
+    cm_element* current = vector->first;
+    long long int size = 0;
     while (current) {
-        ++sz;
+        ++size;
         current = current->next;
     }
-    return sz;
+    return size;
 }
 
-void cm_vector_push_back(cm_vector* v, cm_any val) {
-    if (!v->first) {
-        v->first = cm_element_init(val);
-        v->last = v->first;
+void cm_vector_push_back(cm_vector* vector, cm_any* value) {
+    if (!vector->first) {
+        vector->first = cm_element_init(value);
+        vector->last = vector->first;
     } else {
-        cm_element* new_element = cm_element_init(val);
-        v->last->next = new_element;
-        new_element->prev = v->last;
-        v->last = new_element;
+        cm_element* new_element = cm_element_init(value);
+        vector->last->next = new_element;
+        new_element->prev = vector->last;
+        vector->last = new_element;
     }
 }
 
-cm_any cm_vector_at(cm_vector* v, long long int i) {
-    if (i < 0 || i >= cm_vector_size(v)) {
-        return cm_any_err();
+cm_any* cm_vector_at(cm_vector* vector, long long int index) {
+    if (index < 0 || index >= cm_vector_size(vector)) {
+        return NULL;
     }
 
-    cm_element* current = v->first;
-    long long int index = 0;
+    cm_element* current = vector->first;
+    long long int curr_index = 0;
 
-    while (current && index < i) {
+    while (current && curr_index < index) {
         current = current->next;
-        index++;
+        curr_index++;
     }
 
-    if (current && index == i) {
+    if (current && curr_index == index) {
         return current->value;
     } else {
-        return cm_any_err();
+        return NULL;
     }
 }
 
