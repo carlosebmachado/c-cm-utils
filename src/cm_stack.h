@@ -69,4 +69,13 @@ cm_any* cm_stack_top(cm_stack* stack) {
     return value;
 }
 
+void cm_stack_free(cm_stack* stack) {
+    cm_element* current = stack->first;
+    while (current) {
+        cm_element* to_free = current;
+        current = current->next;
+        cm_element_free(to_free);
+    }
+}
+
 #endif // CM_STACK_H

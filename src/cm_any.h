@@ -29,15 +29,15 @@ typedef struct {
 } cm_any;
 
 cm_any* cm_any_custom(void* value, int type) {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_STRING + type;
     any->data = malloc(sizeof(void*));
-    *((void*)*)any->data = value;
+    *(void**)any->data = value;
     return any;
 }
 
 cm_any* cm_any_bool(bool value) {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_BOOL;
     any->data = malloc(sizeof(bool));
     *(bool*)any->data = value;
@@ -45,7 +45,7 @@ cm_any* cm_any_bool(bool value) {
 }
 
 cm_any* cm_any_int(long long int value) {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_INT;
     any->data = malloc(sizeof(long long int));
     *(long long int*)any->data = value;
@@ -53,14 +53,14 @@ cm_any* cm_any_int(long long int value) {
 }
 
 cm_any* cm_any_err() {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_ERROR;
     any->data = NULL;
     return any;
 }
 
 cm_any* cm_any_float(long double value) {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_FLOAT;
     any->data = malloc(sizeof(long double));
     *(long double*)any->data = value;
@@ -68,7 +68,7 @@ cm_any* cm_any_float(long double value) {
 }
 
 cm_any* cm_any_char(char value) {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_CHAR;
     any->data = malloc(sizeof(char));
     *(char*)any->data = value;
@@ -76,7 +76,7 @@ cm_any* cm_any_char(char value) {
 }
 
 cm_any* cm_any_string(const char* value) {
-    cm_any* any;
+    cm_any* any = (cm_any*)malloc(sizeof(cm_any));
     any->type = CM_TYPE_STRING;
     any->data = strdup(value);
     return any;

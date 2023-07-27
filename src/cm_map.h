@@ -63,4 +63,19 @@ void cm_map_foreach(cm_map* map, cm_map_callback callback) {
     }
 }
 
+void cm_node_free(cm_node* node) {
+    free(node->pair.key);
+    cm_any_free(node->pair.value);
+    free(node);
+}
+
+void cm_map_free(cm_map* map) {
+    cm_node* current = map->head;
+    while (current) {
+        cm_node* to_free = current;
+        current = current->next;
+        cm_node_free(to_free);
+    }
+}
+
 #endif // CM_MAP_H

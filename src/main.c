@@ -4,6 +4,10 @@
 #include "cm.h"
 
 void any_print(cm_any* any) {
+    if (!any) {
+        printf("Null any");
+        return;
+    }
     switch (any->type) {
         case CM_TYPE_ERROR:
             printf("Error value\n");
@@ -59,6 +63,8 @@ int main() {
     printf("Print out of bound:\n");
     any_print(cm_vector_at(v, 3));
 
+    cm_vector_free(v);
+
     printf("\n-----------------\n\n");
 
     cm_stack* s = cm_stack_init();
@@ -67,11 +73,13 @@ int main() {
     cm_stack_push(s, cm_any_string("foo"));
 
     printf("Full stack:\n");
-    stack_print(v);
+    stack_print(s);
     printf("\n");
 
     printf("Stack after print:\n");
-    stack_print(v);
+    stack_print(s);
+
+    cm_stack_free(s);
 
     printf("\n-----------------\n\n");
 
@@ -88,6 +96,8 @@ int main() {
 
     printf("Map foreach print:\n");
     cm_map_foreach(m, map_print);
+
+    cm_map_free(m);
 
     return 0;
 }

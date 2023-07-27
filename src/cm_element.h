@@ -18,4 +18,9 @@ cm_element* cm_element_init(cm_any* value) {
     return element;
 }
 
+void cm_element_free(cm_element* element) {
+    cm_any_free(element->value);
+    free(element);
+}
+
 #endif // CM_ELEMENT_H

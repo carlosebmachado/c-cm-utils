@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1689802952 source:c:\users\carlos\repos\c-utils\src\main.c
+1690420045 source:c:\users\carlos\repos\c-utils\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	"cm.h"
@@ -11,7 +11,7 @@
 	"cm_stack.h"
 	"cm_map.h"
 
-1689718323 c:\users\carlos\repos\c-utils\src\cm_any.h
+1690419027 c:\users\carlos\repos\c-utils\src\cm_any.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
@@ -19,16 +19,16 @@
 	<string.h>
 	<stdbool.h>
 
-1689783285 c:\users\carlos\repos\c-utils\src\cm_element.h
+1690419204 c:\users\carlos\repos\c-utils\src\cm_element.h
 	"cm_any.h"
 
-1689720926 c:\users\carlos\repos\c-utils\src\cm_vector.h
+1690419900 c:\users\carlos\repos\c-utils\src\cm_vector.h
 	"cm_element.h"
 
-1689781905 c:\users\carlos\repos\c-utils\src\cm_stack.h
+1690419930 c:\users\carlos\repos\c-utils\src\cm_stack.h
 	"cm_element.h"
 
-1689802927 c:\users\carlos\repos\c-utils\src\cm_map.h
+1690420026 c:\users\carlos\repos\c-utils\src\cm_map.h
 	"cm_element.h"
 
 1690301178 source:c:\users\6922449\repos\c-utils\src\main.c

@@ -42,7 +42,6 @@ cm_any* cm_vector_at(cm_vector* vector, long long int index) {
     if (index < 0 || index >= cm_vector_size(vector)) {
         return NULL;
     }
-
     cm_element* current = vector->first;
     long long int curr_index = 0;
 
@@ -50,11 +49,19 @@ cm_any* cm_vector_at(cm_vector* vector, long long int index) {
         current = current->next;
         curr_index++;
     }
-
     if (current && curr_index == index) {
         return current->value;
     } else {
         return NULL;
+    }
+}
+
+void cm_vector_free(cm_vector* vector) {
+    cm_element* current = vector->first;
+    while (current) {
+        cm_element* to_free = current;
+        current = current->next;
+        cm_element_free(to_free);
     }
 }
 
